@@ -19,7 +19,7 @@ enum MotorShaftDirection {
 
 
 //% color="#AA278D"
-namespace NPNLab_robot {
+namespace NPNBot {
     /**
      * Motor block
      * pins.dsjkdjskdjk
@@ -71,11 +71,10 @@ namespace NPNLab_robot {
          * Motor block
          * pins.dsjkdjskdjk
          */
-    //% block="Chạy robot với tốc độ M1 %sp1|M2 %sp2"
-    //% sp1.min=-100   sp1.max=100
-    //% sp2.min=-100   sp2.max=100
+    //% block="NPNBot: M1 %sp1|M2 %sp2"
+    //% sp1.min=-255   sp1.max=255
+    //% sp2.min=-255   sp2.max=255
     //% sp1.defl=100 sp2.defl=100 duration.defl=0
-    //% duration.shadow=timePicker
     export function runRobot(sp1: number, sp2: number) {
         if (sp1 > 0) {
             pins.digitalWritePin(DigitalPin.P8, 1)

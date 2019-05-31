@@ -8,11 +8,11 @@
     },
     "files": [
         "README.md",
-        "main.ts"
+        "main.ts",
+        "NPN_Robot.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
-    "public": false,
-    "additionalFilePaths": []
+    "public": false
 }

@@ -5,16 +5,24 @@
 */
 
 enum MotorShaftDirection {
+    //% block="^"
+    dn1,
     //% block="Đi tới"
     forward,
-    //% block="Đi lui"
-    backward,
+    //% block="^"
+    dn2,
     //% block="Rẽ trái"
     turnLeft,
-    //% block="Rẽ phải"
-    turnRight,
     //% block="Dừng lại"
-    stop
+    stop,
+    //% block="Rẽ phải"
+    turnRight, 
+    //% block="<"
+    dn3,
+    //% block="Đi lui"
+    backward,
+    //% block=">"
+    dn4,
 }
 
 
@@ -25,10 +33,13 @@ namespace NPNBot {
      * pins.dsjkdjskdjk
      */
     //% block="Chạy robot hướng %direction|tốc độ %speed|trong %duration ms"
+    //% direction.fieldEditor="gridpicker"
+    //% direction.fieldOptions.width=300
+    //% direction.fieldOptions.columns=3
     //% speed.min=0 speed.max=100
-    //% direction.defl = MotorShaftDirection.forward
-    //% speed.defl = 100
-    //% duration.defl = 0
+    //% direction.defl=MotorShaftDirection.dn1
+    //% speed.defl=100
+    //% duration.defl=0
     //% duration.shadow=timePicker
     export function setMotorSpeed(direction: MotorShaftDirection, speed: number, duration: number) {
         if (direction == MotorShaftDirection.forward) {

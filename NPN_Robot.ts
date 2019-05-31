@@ -71,12 +71,12 @@ namespace NPNLab_robot {
          * Motor block
          * pins.dsjkdjskdjk
          */
-    //% block="Chạy robot M1|| %sp1|M2 %sp2|trong %duration ms"
-    //% sp1.min=0   sp1.max=100
-    //% sp2.min=0   sp2.max=100
+    //% block="Chạy robot với tốc độ M1|| %sp1|M2 %sp2"
+    //% sp1.min=-100   sp1.max=100
+    //% sp2.min=-100   sp2.max=100
     //% sp1.defl=100 sp2.defl=100 duration.defl=0
     //% duration.shadow=timePicker
-    export function runRobot(sp1: number, sp2: number, duration: number) {
+    export function runRobot(sp1: number, sp2: number) {
         if (sp1 > 0) {
             pins.digitalWritePin(DigitalPin.P8, 1)
         }
@@ -93,11 +93,6 @@ namespace NPNLab_robot {
         }
         pins.analogWritePin(AnalogPin.P11, sp2)
 
-        if (duration > 0) {
-            basic.pause(duration)
-            pins.analogWritePin(AnalogPin.P9, 0)
-            pins.analogWritePin(AnalogPin.P11, 0)
-        }
     }
 
 }

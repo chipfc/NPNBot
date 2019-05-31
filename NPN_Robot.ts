@@ -88,18 +88,18 @@ namespace NPNBot {
     //% sp1.defl=100 sp2.defl=100 duration.defl=0
     export function runRobot(sp1: number, sp2: number) {
         if (sp1 > 0) {
-            pins.digitalWritePin(DigitalPin.P8, 1)
+            pins.digitalWritePin(DigitalPin.P8, 0)
         }
         else {
-            pins.digitalWritePin(DigitalPin.P8, 0)
+            pins.digitalWritePin(DigitalPin.P8, 1)
         }
         pins.analogWritePin(AnalogPin.P9, sp1)
 
         if (sp2 > 0) {
-            pins.digitalWritePin(DigitalPin.P10, 1)
+            pins.digitalWritePin(DigitalPin.P10, 0)
         }
         else {
-            pins.digitalWritePin(DigitalPin.P10, 0)
+            pins.digitalWritePin(DigitalPin.P10, 1)
         }
         pins.analogWritePin(AnalogPin.P11, sp2)
 

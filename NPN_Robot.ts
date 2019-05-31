@@ -24,7 +24,7 @@ namespace NPNLab_robot {
      * Motor block
      * pins.dsjkdjskdjk
      */
-    //% block="Chạy robot || %direction|tốc độ %speed|trong %duration ms"
+    //% block="Chạy robot hướng %direction|tốc độ %speed|trong %duration ms"
     //% speed.min=0 speed.max=100
     //% direction.defl = MotorShaftDirection.forward
     //% speed.defl = 100
@@ -71,7 +71,7 @@ namespace NPNLab_robot {
          * Motor block
          * pins.dsjkdjskdjk
          */
-    //% block="Chạy robot với tốc độ M1|| %sp1|M2 %sp2"
+    //% block="Chạy robot với tốc độ M1 %sp1|M2 %sp2"
     //% sp1.min=-100   sp1.max=100
     //% sp2.min=-100   sp2.max=100
     //% sp1.defl=100 sp2.defl=100 duration.defl=0

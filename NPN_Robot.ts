@@ -67,7 +67,7 @@ namespace NPNBot {
 
     /**
      * Motor block
-     * pins.dsjkdjskdjk
+     * Hàm điểu khiển robot theo hướng
      */
     //% block="Chạy robot hướng %direction|tốc độ %speed|trong %duration ms"
     //% group=motor

@@ -75,7 +75,6 @@ namespace NPNBot {
     //% direction.fieldOptions.width=300
     //% direction.fieldOptions.columns=3
     //% speed.min=0 speed.max=100
-    //% direction.defl=MotorShaftDirection.dn1
     //% speed.defl=100
     //% duration.defl=0
     //% duration.shadow=timePicker
@@ -153,6 +152,5 @@ namespace NPNBot {
             default: return d;
         }
     }
-
 }
 

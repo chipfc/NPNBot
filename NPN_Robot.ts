@@ -26,7 +26,14 @@ enum MotorShaftDirection {
     //% block=">"
     dn4,
 }
-
+enum PingUnit {
+    //% block="μs"
+    MicroSeconds,
+    //% block="cm"
+    Centimeters,
+    //% block="inches"
+    Inches
+}
 
 //% color="#AA278D"
 namespace NPNBot {
@@ -35,8 +42,10 @@ namespace NPNBot {
         * 
         */
     //% block="NPNBot: M1 %speedLeft|M2 %speedRight"
-    //% speedLeft.min=-255   speedRight.max=255
-    //% speedLeft.min=-255   speedRight.max=255
+    //% group=motor
+    //% speedLeft.min=-100   speedRight.max=100
+    //% speedLeft.min=-100   speedRight.max=100
+    //% speedLeft.shadow="speedPicker"  speedRight.shadow="speedPicker"
     //% speedLeft.defl=0 speedRight.defl=0 duration.defl=0
     export function runRobot(speedLeft: number, speedRight: number) {
         if (speedLeft > 0) {
@@ -45,7 +54,7 @@ namespace NPNBot {
         else {
             pins.digitalWritePin(DigitalPin.P8, 1)
         }
-        pins.analogWritePin(AnalogPin.P9, speedLeft)
+        pins.analogWritePin(AnalogPin.P9, Math.abs(speedLeft * 2.55))
 
         if (speedRight > 0) {
             pins.digitalWritePin(DigitalPin.P10, 0)
@@ -53,8 +62,7 @@ namespace NPNBot {
         else {
             pins.digitalWritePin(DigitalPin.P10, 1)
         }
-        pins.analogWritePin(AnalogPin.P11, speedRight)
-
+        pins.analogWritePin(AnalogPin.P11, Math.abs(speedRight * 2.55))
     }
 
     /**
@@ -62,6 +70,7 @@ namespace NPNBot {
      * pins.dsjkdjskdjk
      */
     //% block="Chạy robot hướng %direction|tốc độ %speed|trong %duration ms"
+    //% group=motor
     //% direction.fieldEditor="gridpicker"
     //% direction.fieldOptions.width=300
     //% direction.fieldOptions.columns=3
@@ -106,8 +115,44 @@ namespace NPNBot {
         }
     }
 
+    //% block="Khoảng cách"
+    //% group=khoang_cach
+    export function ping(): number {
+        // send pulse
+        const maxCmDistance = 500
+        const trig = DigitalPin.P7
+        const echo = DigitalPin.P6
+        pins.setPull(trig, PinPullMode.PullNone);
+        pins.digitalWritePin(trig, 0);
+        control.waitMicros(2);
+        pins.digitalWritePin(trig, 1);
+        control.waitMicros(10);
+        pins.digitalWritePin(trig, 0);
+        // read pulse
+        const d = pins.pulseIn(echo, PulseValue.High, 2900);
+        return Math.idiv(d, 58)
+    }
 
-
+    //% blockId=sonar_ping block="Cảm biến siêu âm với đơn vị %unit ||trig %trig|echo %echo|"
+    //% group=khoang_cach
+    //% trig.defl=DigitalPin.P7 echo.defl=DigitalPin.P6
+    export function ping_full(unit: PingUnit, trig: DigitalPin = DigitalPin.P7, echo: DigitalPin = DigitalPin.P6): number {
+        // send pulse
+        const maxCmDistance = 500
+        pins.setPull(trig, PinPullMode.PullNone);
+        pins.digitalWritePin(trig, 0);
+        control.waitMicros(2);
+        pins.digitalWritePin(trig, 1);
+        control.waitMicros(10);
+        pins.digitalWritePin(trig, 0);
+        // read pulse
+        const d = pins.pulseIn(echo, PulseValue.High, maxCmDistance * 58);
+        switch (unit) {
+            case PingUnit.Centimeters: return Math.idiv(d, 58);
+            case PingUnit.Inches: return Math.idiv(d, 148);
+            default: return d;
+        }
+    }
 
 }
 

@@ -41,7 +41,7 @@ namespace NPNBot {
         * Motor block 1: hàm điều khiển robot bằng tốc độ của 2 đông cơ
         * 
         */
-    //% block="NPNBot: M1 %speedLeft|M2 %speedRight"
+    //% block="NPNBot: Trái %speedLeft|Phải %speedRight"
     //% group=motor
     //% speedLeft.min=-100   speedRight.max=100
     //% speedLeft.min=-100   speedRight.max=100

@@ -49,10 +49,10 @@ namespace NPNBot {
     //% speedLeft.defl=0 speedRight.defl=0 duration.defl=0
     export function runRobot(speedLeft: number, speedRight: number) {
         if (speedLeft > 0) {
-            pins.digitalWritePin(DigitalPin.P8, 0)
+            pins.digitalWritePin(DigitalPin.P8, 1)
         }
         else {
-            pins.digitalWritePin(DigitalPin.P8, 1)
+            pins.digitalWritePin(DigitalPin.P8, 0)
         }
         pins.analogWritePin(AnalogPin.P9, Math.abs(speedLeft * 2.55))
 
@@ -80,25 +80,25 @@ namespace NPNBot {
     //% duration.shadow=timePicker
     export function setMotorSpeed(direction: MotorShaftDirection, speed: number, duration: number) {
         if (direction == MotorShaftDirection.forward) {
-            pins.digitalWritePin(DigitalPin.P8, 0)
+            pins.digitalWritePin(DigitalPin.P8, 1)
             pins.digitalWritePin(DigitalPin.P10, 0)
             pins.analogWritePin(9, speed)
             pins.analogWritePin(11, speed)
         }
         else if (direction == MotorShaftDirection.backward) {
-            pins.digitalWritePin(DigitalPin.P8, 1)
+            pins.digitalWritePin(DigitalPin.P8, 0)
             pins.digitalWritePin(DigitalPin.P10, 1)
             pins.analogWritePin(9, speed)
             pins.analogWritePin(11, speed)
         }
         else if (direction == MotorShaftDirection.turnLeft) {
-            pins.digitalWritePin(DigitalPin.P8, 1)
+            pins.digitalWritePin(DigitalPin.P8, 0)
             pins.digitalWritePin(DigitalPin.P10, 0)
             pins.analogWritePin(9, speed)
             pins.analogWritePin(11, speed)
         }
         else if (direction == MotorShaftDirection.turnRight) {
-            pins.digitalWritePin(DigitalPin.P8, 0)
+            pins.digitalWritePin(DigitalPin.P8, 1)
             pins.digitalWritePin(DigitalPin.P10, 1)
             pins.analogWritePin(9, speed)
             pins.analogWritePin(11, speed)
